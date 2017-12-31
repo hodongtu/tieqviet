@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Tiếq Việt</title>
-		<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
-		<!-- Ajax -->
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('textarea').bind('input propertychange', function() {
-				  	$.ajax({
-				  	    url: '/ajax',
-				  	    data : {
-				  	       input_text: $("#input-text").val(),
-				  	    },
-				  	    type: 'POST',
-				  	    success: function(response){
-				  	        console.log(response);
-				  	    },
-				  	    error: function(error){
-				  	        console.log(error);
-				  	    }
-				  	})
-				  	.done(function(data) {
-				  	    $("#result").empty().append('<pre>'+ data.result +'</pre>')
-				  	});
-				  	event.preventDefault();
-				});
-			});
-		</script>
-		<!-- End Ajax -->
-		
-		<script type="text/javascript">
-			function copyToClipboard(element) {
-			  	var $temp = $("<input>");
-			  	$("body").append($temp);
-			  	$temp.val($(element).text()).select();
-			  	document.execCommand("copy");
-			  	$temp.remove();
-			  	alert("Copied")
-			}
-		</script>
-	</head>
-	<body>
-		<div class="container">
-			<h3>Bộ cuyển dổi Tiếq Việt</h3>	<br />
-			<h4>Input: </h4>
-			<textarea id="input-text" class="form-control" name="input-text" rows="10" placeholder="Input here . . ."></textarea>
-			<h4>Result: </h4>
-			<div id="result" class="alert alert-success"></div>
-			<input type="button" id="copy-text" class="btn btn-primary" name="copy" value="Copy Result" onclick="copyToClipboard('#result')">
-		</div>
-	</body>
+    <head>
+        <title>Tiếq Việt</title>
+        <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+        <!-- Ajax -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('textarea').bind('input propertychange', function() {
+                    $.ajax({
+                        url: '/ajax',
+                       	data : {
+                            input_text: $("#input-text").val(),
+                        },
+                        type: 'POST',
+                        success: function(response){
+                            console.log(response);
+                        },
+                        error: function(error){
+                            console.log(error);
+                        }
+                      })
+                      .done(function(data) {
+                          $("#result").empty().append('<pre>'+ data.result +'</pre>')
+                      });
+                      event.preventDefault();
+                });
+            });
+        </script>
+        <!-- End Ajax -->
+        
+        <script type="text/javascript">
+            function copyToClipboard(element) {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val($(element).text()).select();
+                document.execCommand("copy");
+                $temp.remove();
+                alert("Copied")
+            }
+        </script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <h3>Bộ cuyển dổi Tiếq Việt</h3>    <br />
+            <h4>Input: </h4>
+            <textarea id="input-text" class="form-control" name="input-text" rows="10" placeholder="Input here . . ."></textarea>
+            <h4>Result: </h4>
+            <div id="result" class="alert alert-success"></div>
+            <input type="button" id="copy-text" class="btn btn-primary" name="copy" value="Copy Result" onclick="copyToClipboard('#result')">
+        </div>
+    </body>
 </html>

@@ -11,12 +11,12 @@ def index():
 
 @app.route('/ajax', methods=['POST'])
 def ajax():
-	input_data = request.form['input_text']
-	for i in maps:
-		if i[0] in input_data:
-			input_data = input_data.replace(i[0],i[1])
-	return jsonify({'result': input_data})
+    input_data = request.form['input_text']
+    for i in maps:
+        if i[0] in input_data:
+            input_data = input_data.replace(i[0],i[1])
+    return jsonify({'result': input_data})
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)
 
 
